@@ -38,11 +38,61 @@ export default function Mealplan() {
           <h2>Top bar</h2>
           <button className="border rounded p-1 ml-auto">+ New recipe</button>
         </div>
-        <div className="main-wrapper">
-          <div className="board-nav ">Board Nav</div>
-          <div className="board-wrapper">
-            <div className="rec-list">Recipes list</div>
-            <div className="board-main">Board</div>
+        <div className="main-wrapper p-[24px]">
+          <div className="board-wrapper flex gap-5">
+            <div className="rec-list w-1/5 bg-white border rounded">
+              <h2 className="text-sm font-bold p-2 border-b">Recipes list</h2>
+              <ul>
+                <li className="border-b p-2">
+                  <div>Chili con carne</div>
+                  <span>Rice+Garlic bread</span>
+                </li>
+                <li className="border-b p-2">
+                  <div>Massaman Curry</div>
+                  <span>Beef+Rice</span>
+                </li>
+                <li className="border-b p-2">
+                  <div>Chicken Fajitas</div>
+                  <span>Veg+Wraps</span>
+                </li>
+                <li className="border-b p-2">
+                  <div>Pasta Bolognese</div>
+                  <span>Pasta</span>
+                </li>
+                <li className="border-0 p-2">
+                  <div>Pesto Chicken Pasta</div>
+                  <span>Pasta</span>
+                </li>
+              </ul>
+            </div>
+            <div className="board-main w-4/5 bg-white border rounded">
+              <div className="board-nav bg-white border-b p-2 text-sm flex gap-3 justify-center">
+                <h2 className="text-sm font-bold p-2">February 2024</h2>
+                <button className="border rounded p-1 px-3">Today</button>
+                <button className="border rounded p-1 px-3">Prev</button>
+                <button className="border rounded p-1 px-3">Next</button>
+              </div>
+              <div>
+                <div className="grid  grid-cols-7	 leading-6 gap-px text-center border-b text-xs  font-medium text-gray-500 bg-gray-200">
+                  <div className="py-2 bg-white">Mon 5</div>
+                  <div className="py-2 bg-white">Tue 6</div>
+                  <div className="py-2 bg-white">Wed 7</div>
+                  <div className="py-2 bg-white">Thu 8</div>
+                  <div className="py-2 bg-white">Fri 9</div>
+                  <div className="py-2 bg-white">Sat 10</div>
+                  <div className="py-2 bg-white">Sun 11</div>
+                </div>
+              </div>
+              <div className="grid  grid-cols-7	gap-px h-full bg-gray-200">
+                <div className="py-2 bg-white"></div>
+                <div className="py-2 bg-white"></div>
+                <div className="py-2 bg-white"></div>
+                <div className="py-2 bg-white"></div>
+                <div className="py-2 bg-white"></div>
+                <div className="py-2 bg-white"></div>
+                <div className="py-2 bg-white"></div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
