@@ -16,7 +16,8 @@ export default function Task({ task, index }) {
         <Container
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          innerRef={provided.innerRef}
+          ref={provided.innerRef}
+          key={task.id}
         >
           {task.content}
         </Container>

@@ -21,9 +21,10 @@ export default function Column({ column, tasks }) {
       <Title>{column.title}</Title>
       <Droppable droppableId={column.id}>
         {(provided) => (
-          <TaskList innerRef={provided.innerRef} {...provided.droppableProps}>
+          <TaskList ref={provided.innerRef} {...provided.droppableProps}>
+            {/* {console.log(provided)} */}
             {tasks.map((task, index) => (
-              <Task task={task} index={index} />
+              <Task task={task} index={index} key={task.id} />
             ))}
             {provided.placeholder}
           </TaskList>
