@@ -1,6 +1,10 @@
 import React from "react";
+import mockData from "./mockData";
+
+const data = mockData;
 
 export default function Mealplan() {
+  const [activeGroup, setActiveGroup] = React.useState(1);
   return (
     <div className="flex">
       <div className="sidebar h-screen relative">
@@ -8,12 +12,13 @@ export default function Mealplan() {
           <h1 className="font-extrabold">MealPlan</h1>
         </header>
         <div className="category-wrapper border border-gray-200 p-5 border-t-0 border-b-0 h-5/6">
-          <h2>Category</h2>
+          <h2>Groups</h2>
           <ul>
-            <li>All meals</li>
-            <li>Kids Fav</li>
-            <li>Family meals</li>
-            <li>Adults meals</li>
+            {data.groups.map(({ id, title }) => (
+              <li key={id} onClick={() => setActiveGroup(id)}>
+                {title}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="switch-wrapper border border-gray-200 p-5 absolute bottom-0 left-0">
@@ -43,26 +48,15 @@ export default function Mealplan() {
             <div className="rec-list w-1/5 bg-white border rounded">
               <h2 className="text-sm font-bold p-2 border-b">Recipes list</h2>
               <ul>
-                <li className="border-b p-2">
-                  <div>Chili con carne</div>
-                  <span>Rice+Garlic bread</span>
-                </li>
-                <li className="border-b p-2">
-                  <div>Massaman Curry</div>
-                  <span>Beef+Rice</span>
-                </li>
-                <li className="border-b p-2">
-                  <div>Chicken Fajitas</div>
-                  <span>Veg+Wraps</span>
-                </li>
-                <li className="border-b p-2">
-                  <div>Pasta Bolognese</div>
-                  <span>Pasta</span>
-                </li>
-                <li className="border-0 p-2">
-                  <div>Pesto Chicken Pasta</div>
-                  <span>Pasta</span>
-                </li>
+                {data.recipes
+                  .filter((recipe) => recipe.group.includes(activeGroup))
+
+                  .map((recipe) => (
+                    <li key={recipe.id} className="border-b p-2">
+                      <div>{recipe.name}</div>
+                      <span>{recipe.addInfo}</span>
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className="board-main w-4/5 bg-white border rounded">
