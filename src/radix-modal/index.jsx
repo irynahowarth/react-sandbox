@@ -18,12 +18,14 @@ export default function RadixModal() {
 
 function RecipeCard({ recipe }) {
   const { updateRecipe } = useRecipes();
+  const [open, setOpen] = React.useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(event.currentTarget));
     console.log(data);
     await updateRecipe(recipe.id, data);
+    setOpen(false);
   }
   return (
     <div className="flex justify-between rounded-lg bg-white px-4 py-4 text-gray-900 shadow">
@@ -32,7 +34,7 @@ function RecipeCard({ recipe }) {
         <p className="text-sm text-gray-500">{recipe.addInfo}</p>
       </div>
       <div>
-        <Dialog.Root>
+        <Dialog.Root open={open} onOpenChange={setOpen}>
           <Dialog.Trigger className="rounded p-2 hover:bg-gray-200">
             <Pencil1Icon />
           </Dialog.Trigger>
