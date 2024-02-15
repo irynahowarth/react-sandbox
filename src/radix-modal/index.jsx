@@ -1,8 +1,9 @@
 import React from "react";
-import { Cross1Icon, Pencil1Icon } from "@radix-ui/react-icons";
-import * as Dialog from "@radix-ui/react-dialog";
+import { Pencil1Icon } from "@radix-ui/react-icons";
+
 import { useRecipes } from "./recipes";
 import Spinner from "./spinner";
+import Modal from "./modal";
 
 export default function RadixModal() {
   const { recipes } = useRecipes();
@@ -27,23 +28,14 @@ function RecipeCard({ recipe }) {
         <p className="text-sm text-gray-500">{recipe.addInfo}</p>
       </div>
       <div>
-        <Dialog.Root open={open} onOpenChange={setOpen}>
-          <Dialog.Trigger className="rounded p-2 hover:bg-gray-200">
+        <Modal open={open} onOpenChange={setOpen}>
+          <Modal.Button className="rounded p-2 hover:bg-gray-200">
             <Pencil1Icon />
-          </Dialog.Trigger>
-          <Dialog.Portal>
-            <Dialog.Overlay className="data-[state=open]:animate-[dialog-overlay-show_200ms] data-[state=closed]:animate-[dialog-overlay-show_200ms] fixed inset-0 bg-black/50" />
-            <Dialog.Content className="data-[state=open]:animate-[dialog-content-show_200ms] data-[state=closed]:animate-[dialog-content-hide_200ms] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-gray-900 rounded-md p-8 shadow w-full max-w-md">
-              <div className="flex justify-between items-center">
-                <Dialog.Title className="text-xl">Edit recipe</Dialog.Title>
-                <Dialog.Close className="text-gray-400 hover:text-gray-500">
-                  <Cross1Icon />
-                </Dialog.Close>
-              </div>
-              <RecipeForm recipe={recipe} afterSave={() => setOpen(false)} />
-            </Dialog.Content>
-          </Dialog.Portal>
-        </Dialog.Root>
+          </Modal.Button>
+          <Modal.Content title="Edit recipe">
+            <RecipeForm recipe={recipe} afterSave={() => setOpen(false)} />
+          </Modal.Content>
+        </Modal>
       </div>
     </div>
   );
@@ -90,9 +82,9 @@ function RecipeForm({ recipe, afterSave }) {
         </div>
 
         <div className="text-right mt-8 space-x-6">
-          <Dialog.Close className="px-4 py-2  text-sm font-medium text-gray-500 rounded hover:text-gray-600">
+          <Modal.Close className="px-4 py-2  text-sm font-medium text-gray-500 rounded hover:text-gray-600">
             Cancel
-          </Dialog.Close>
+          </Modal.Close>
           <button className="inline-flex justify-center items-center px-4 py-2 bg-green-500 text-sm font-medium text-white rounded hover:bg-green-600 group-disabled:pointer-events-none">
             <Spinner className="h-4 absolute group-enabled:opacity-0" />
             <span className="group-disabled:opacity-0">Save</span>
